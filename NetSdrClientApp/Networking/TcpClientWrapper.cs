@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -60,6 +60,7 @@ namespace NetSdrClientApp.Networking
                 _stream?.Close();
                 _tcpClient?.Close();
 
+                _cts?.Dispose();
                 _cts = null;
                 _tcpClient = null;
                 _stream = null;
