@@ -1,15 +1,18 @@
 # Лабораторні з реінжинірингу Марченка Тараса
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=SkorpikFeed_NetSdrClient&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=SkorpikFeed_NetSdrClient)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=SkorpikFeed_NetSdrClient&metric=bugs)](https://sonarcloud.io/summary/new_code?id=SkorpikFeed_NetSdrClient)
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=SkorpikFeed_NetSdrClient&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=SkorpikFeed_NetSdrClient)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=SkorpikFeed_NetSdrClient&metric=coverage)](https://sonarcloud.io/summary/new_code?id=SkorpikFeed_NetSdrClient)
-[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=SkorpikFeed_NetSdrClient&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=SkorpikFeed_NetSdrClient)
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=SkorpikFeed_NetSdrClient&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=SkorpikFeed_NetSdrClient)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=SkorpikFeed_NetSdrClient&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=SkorpikFeed_NetSdrClient)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=SkorpikFeed_NetSdrClient&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=SkorpikFeed_NetSdrClient)
-[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=SkorpikFeed_NetSdrClient&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=SkorpikFeed_NetSdrClient)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=SkorpikFeed_NetSdrClient&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=SkorpikFeed_NetSdrClient)
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=SkorpikFeed_NetSdrClient&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=SkorpikFeed_NetSdrClient)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=SkorpikFeed_NewNetSdrClient&metric=bugs)](https://sonarcloud.io/summary/new_code?id=SkorpikFeed_NewNetSdrClient)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=SkorpikFeed_NewNetSdrClient&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=SkorpikFeed_NewNetSdrClient)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=SkorpikFeed_NewNetSdrClient&metric=coverage)](https://sonarcloud.io/summary/new_code?id=SkorpikFeed_NewNetSdrClient)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=SkorpikFeed_NewNetSdrClient&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=SkorpikFeed_NewNetSdrClient)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=SkorpikFeed_NewNetSdrClient&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=SkorpikFeed_NewNetSdrClient)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=SkorpikFeed_NewNetSdrClient&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=SkorpikFeed_NewNetSdrClient)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=SkorpikFeed_NewNetSdrClient&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=SkorpikFeed_NewNetSdrClient)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=SkorpikFeed_NewNetSdrClient&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=SkorpikFeed_NewNetSdrClient)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=SkorpikFeed_NewNetSdrClient&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=SkorpikFeed_NewNetSdrClient)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=SkorpikFeed_NewNetSdrClient&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=SkorpikFeed_NewNetSdrClient)
+
+---
+
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=SkorpikFeed_NewNetSdrClient)](https://sonarcloud.io/summary/new_code?id=SkorpikFeed_NewNetSdrClient)
 
 Цей репозиторій використовується для курсу **реінжиніринг ПЗ**. 
 Мета — провести комплексний реінжиніринг спадкового коду NetSdrClient, включаючи рефакторинг архітектури, покращення якості коду, впровадження сучасних практик розробки та автоматизацію процесів контролю якості через CI/CD пайплайни.
