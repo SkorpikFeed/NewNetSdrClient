@@ -65,18 +65,7 @@ namespace NetSdrClientApp.Networking
 
         public void Exit()
         {
-            try
-            {
-                _cts?.Cancel();
-                _udpClient?.Close();
-                _cts?.Dispose();
-                _cts = null;
-                Console.WriteLine("Stopped listening for UDP messages.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error while stopping: {ex.Message}");
-            }
+            StopListening();
         }
 
         public override int GetHashCode()
