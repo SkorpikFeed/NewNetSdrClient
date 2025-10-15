@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+// using System.Net.Sockets;
 using static NetSdrClientApp.Messages.NetSdrMessageHelper;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -16,6 +17,9 @@ namespace NetSdrClientApp
     {
         private ITcpClient _tcpClient;
         private IUdpClient _udpClient;
+
+        // // INTENTIONAL VIOLATION: Direct use of System.Net.Sockets type
+        // private ProtocolType _protocolType = ProtocolType.Tcp;
 
         public bool IQStarted { get; set; }
 
