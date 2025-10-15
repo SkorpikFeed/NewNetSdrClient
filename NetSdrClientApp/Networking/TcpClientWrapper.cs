@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace NetSdrClientApp.Networking
 {
-    public class TcpClientWrapper : ITcpClient
+    public sealed class TcpClientWrapper : ITcpClient
     {
         private string _host;
         private int _port;
