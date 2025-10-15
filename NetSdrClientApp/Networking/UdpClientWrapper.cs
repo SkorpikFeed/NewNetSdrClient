@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NetSdrClientApp.Networking
 {
-    public class UdpClientWrapper : IUdpClient
+    public sealed class UdpClientWrapper : IUdpClient
     {
         private readonly IPEndPoint _localEndPoint;
         private CancellationTokenSource? _cts;
