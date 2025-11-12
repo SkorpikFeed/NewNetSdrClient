@@ -92,8 +92,9 @@ public class WrapperIntegrationTests : IDisposable
         // Act
         wrapper.Close();
 
-        // Assert - No exception thrown
-        wrapper.Dispose(); // Should not throw even after Close
+        // Assert - No exception thrown when disposing after Close
+        Action act = () => wrapper.Dispose();
+        act.Should().NotThrow();
     }
 
     [Fact]
@@ -149,11 +150,14 @@ public class WrapperIntegrationTests : IDisposable
         var serverClient = await _testListener.AcceptTcpClientAsync();
         var streamWrapper = new NetworkStreamWrapper(serverClient.GetStream());
 
-        // Act
-        streamWrapper.Dispose();
+        // Act & Assert - disposing should not throw
+        Action firstDispose = () => streamWrapper.Dispose();
+        firstDispose.Should().NotThrow();
 
-        // Assert - After dispose, operations should fail or stream should be closed
-        // We just verify no exception during dispose
+        // Calling dispose a second time should also not throw (idempotent)
+        Action secondDispose = () => streamWrapper.Dispose();
+        secondDispose.Should().NotThrow();
+        
         serverClient.Close();
     }
 
