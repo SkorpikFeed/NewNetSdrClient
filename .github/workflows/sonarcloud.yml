@@ -59,7 +59,7 @@ jobs:
           /k:"SkorpikFeed_NewNetSdrClient" `
           /o:"skorpikfeed" `
           /d:sonar.token="${{ secrets.SONAR_TOKEN }}" `
-          /d:sonar.cs.opencover.reportsPaths="**/coverage.xml" `
+          /d:sonar.cs.opencover.reportsPaths="**/TestResults/coverage.opencover.xml" `
           /d:sonar.cpd.cs.minimumTokens=40 `
           /d:sonar.cpd.cs.minimumLines=5 `
           /d:sonar.exclusions=**/bin/**,**/obj/**,**/sonarcloud.yml `
@@ -70,11 +70,18 @@ jobs:
         run: dotnet restore NetSdrClient.sln
       - name: Build
         run: dotnet build NetSdrClient.sln -c Release --no-restore
-      - name: Tests with coverage (OpenCover)
+      - name: Tests with coverage (OpenCover) - NetSdrClientApp
         run: |
           dotnet test NetSdrClientAppTests/NetSdrClientAppTests.csproj -c Release --no-build `
             /p:CollectCoverage=true `
-            /p:CoverletOutput=TestResults/coverage.xml `
+            /p:CoverletOutput=TestResults/ `
+            /p:CoverletOutputFormat=opencover
+        shell: pwsh
+      - name: Tests with coverage (OpenCover) - EchoTspServer
+        run: |
+          dotnet test EchoTspServer.Tests/EchoTspServer.Tests.csproj -c Release --no-build `
+            /p:CollectCoverage=true `
+            /p:CoverletOutput=TestResults/ `
             /p:CoverletOutputFormat=opencover
         shell: pwsh
       # 3) END: SonarScanner

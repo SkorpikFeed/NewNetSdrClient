@@ -9,31 +9,37 @@ namespace EchoServer
 {
     public class EchoServer
     {
-        private readonly int _port;
-        private TcpListener _listener;
+        private readonly ITcpListenerWrapper _listener;
         private CancellationTokenSource _cancellationTokenSource;
+        private readonly Func<ITcpClientWrapper, Task> _clientHandler;
 
-        //constuctor
-        public EchoServer(int port)
+        // Constructor with listener injection for testability
+        public EchoServer(ITcpListenerWrapper listener, Func<ITcpClientWrapper, Task>? clientHandler = null)
         {
-            _port = port;
+            _listener = listener;
             _cancellationTokenSource = new CancellationTokenSource();
+            _clientHandler = clientHandler ?? (client => HandleClientAsync(client, _cancellationTokenSource.Token));
+        }
+
+        // Convenience constructor for production use
+        public EchoServer(int port) : this(new TcpListenerWrapper(port))
+        {
         }
 
         public async Task StartAsync()
         {
-            _listener = new TcpListener(IPAddress.Any, _port);
             _listener.Start();
-            Console.WriteLine($"Server started on port {_port}.");
+            Console.WriteLine("Server started.");
 
             while (!_cancellationTokenSource.Token.IsCancellationRequested)
             {
                 try
                 {
-                    TcpClient client = await _listener.AcceptTcpClientAsync();
+                    TcpClient rawClient = await _listener.AcceptTcpClientAsync();
                     Console.WriteLine("Client connected.");
 
-                    _ = Task.Run(() => HandleClientAsync(client, _cancellationTokenSource.Token));
+                    ITcpClientWrapper clientWrapper = new TcpClientWrapper(rawClient);
+                    _ = Task.Run(() => _clientHandler(clientWrapper));
                 }
                 catch (ObjectDisposedException)
                 {
@@ -45,9 +51,9 @@ namespace EchoServer
             Console.WriteLine("Server shutdown.");
         }
 
-        private async Task HandleClientAsync(TcpClient client, CancellationToken token)
+        public virtual async Task HandleClientAsync(ITcpClientWrapper client, CancellationToken token)
         {
-            using (NetworkStream stream = client.GetStream())
+            using (INetworkStreamWrapper stream = client.GetStream())
             {
                 try
                 {
@@ -115,14 +121,16 @@ namespace EchoServer
     {
         private readonly string _host;
         private readonly int _port;
-        private readonly UdpClient _udpClient;
-        private Timer _timer;
+        private readonly IUdpClientWrapper _udpClient;
+        private Timer? _timer;
+        private ushort _sequenceNumber;
 
-        public UdpTimedSender(string host, int port)
+        public UdpTimedSender(string host, int port, IUdpClientWrapper? udpClient = null)
         {
             _host = host;
             _port = port;
-            _udpClient = new UdpClient();
+            _udpClient = udpClient ?? new UdpClientWrapper();
+            _sequenceNumber = 0;
         }
 
         public void StartSending(int intervalMilliseconds)
@@ -133,9 +141,7 @@ namespace EchoServer
             _timer = new Timer(SendMessageCallback, null, 0, intervalMilliseconds);
         }
 
-        ushort i = 0;
-
-        private void SendMessageCallback(object state)
+        private void SendMessageCallback(object? state)
         {
             try
             {
@@ -143,9 +149,9 @@ namespace EchoServer
                 Random rnd = new Random();
                 byte[] samples = new byte[1024];
                 rnd.NextBytes(samples);
-                i++;
+                _sequenceNumber++;
 
-                byte[] msg = (new byte[] { 0x04, 0x84 }).Concat(BitConverter.GetBytes(i)).Concat(samples).ToArray();
+                byte[] msg = (new byte[] { 0x04, 0x84 }).Concat(BitConverter.GetBytes(_sequenceNumber)).Concat(samples).ToArray();
                 var endpoint = new IPEndPoint(IPAddress.Parse(_host), _port);
 
                 _udpClient.Send(msg, msg.Length, endpoint);
