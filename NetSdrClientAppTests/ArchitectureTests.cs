@@ -26,7 +26,7 @@ namespace NetSdrClientAppTests
                 .GetResult();
 
             // Assert
-            Assert.IsTrue(result.IsSuccessful);
+            Assert.That(result.IsSuccessful, Is.True);
         }
 
         [Test]
@@ -46,7 +46,7 @@ namespace NetSdrClientAppTests
                 .GetResult();
 
             // Assert
-            Assert.IsTrue(result.IsSuccessful);
+            Assert.That(result.IsSuccessful, Is.True);
         }
     }
 }
