@@ -68,13 +68,13 @@ namespace EchoTspServer.Tests
             sender.StopSending();
 
             // Assert
-            sendCount.Should().BeGreaterOrEqualTo(3);
+            sendCount.Should().BeGreaterThanOrEqualTo(3);
             capturedMessage.Should().NotBeNull();
-            capturedMessage.Length.Should().Be(1028); // 2 header bytes + 2 sequence bytes + 1024 sample bytes
+            capturedMessage!.Length.Should().Be(1028); // 2 header bytes + 2 sequence bytes + 1024 sample bytes
             capturedMessage[0].Should().Be(0x04);
             capturedMessage[1].Should().Be(0x84);
             capturedEndpoint.Should().NotBeNull();
-            capturedEndpoint.Address.ToString().Should().Be("127.0.0.1");
+            capturedEndpoint!.Address.ToString().Should().Be("127.0.0.1");
             capturedEndpoint.Port.Should().Be(5000);
         }
 
@@ -102,7 +102,7 @@ namespace EchoTspServer.Tests
             sender.StopSending();
 
             // Assert
-            sequenceNumbers.Should().HaveCountGreaterOrEqualTo(4);
+            sequenceNumbers.Should().HaveCountGreaterThanOrEqualTo(4);
             sequenceNumbers[0].Should().Be(1);
             sequenceNumbers[1].Should().Be(2);
             sequenceNumbers[2].Should().Be(3);
@@ -134,7 +134,7 @@ namespace EchoTspServer.Tests
             int countAfterStop = sendCount;
 
             // Assert
-            countBeforeStop.Should().BeGreaterOrEqualTo(2);
+            countBeforeStop.Should().BeGreaterThanOrEqualTo(2);
             countAfterStop.Should().Be(countBeforeStop); // No more sends after stop
         }
 
