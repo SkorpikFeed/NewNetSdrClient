@@ -302,5 +302,5 @@ updates:
 - **Подвійний аналіз (PR + push)**
   Обмежити умову запуску Sonar: тільки PR **або** `refs/heads/master`.
 - **PR зелений, push червоний**
-  Перевірити **New Code Definition** (Number of days або Previous version) і довести покриття/дублікації на “new code”.
+  Перевірити **New Code Definition** (Number of days або Previous version) і довести покриття/дублікації на “new code”..
 
